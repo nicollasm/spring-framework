@@ -17,7 +17,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Cadastrando nova empresa:");
+        System.out.println("Cadastrando nova empresa");
 
         String nomeEmpresa = request.getParameter("nomeEmpresaForm");
         Empresa empresa = new Empresa();
@@ -28,7 +28,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 
         //chamando o .JSP
         RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
-        request.setAttribute("nomeEmpresa", empresa.getNome());
+        request.setAttribute("empresa", empresa.getNome());
         rd.forward(request, response);
 
     }

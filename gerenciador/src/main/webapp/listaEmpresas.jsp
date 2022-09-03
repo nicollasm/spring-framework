@@ -1,25 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-<%@ page
-        import="java.util.List, br.com.alura.gerenciador.servlet.Empresa" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; ISO-8859-1" %>
+<%@page import="java.util.List, br.com.alura.gerenciador.servlet.Empresa" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE hmtl>
 <html>
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Lista de empresas cadastradas</title>
-</head>
-<body>
-<h3>Empresas cadastradas:</h3>
-<ul>
-    <%
-        List<Empresa> lista = (List<Empresa>) request.getAttribute("listaEmpresas");
-        for (Empresa empresa : lista) {
-    %>
-    <li><%=empresa.getNome()%>
-    </li>
-    <%
-        }
-    %>
-</ul>
-</body>
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Java Standard Taglib</title>
+    </head>
+    <body>
+        Lista de empresas: <br />
+
+        <ul>
+            <jsp:useBean id="empresas" scope="request" type="java.util.List"/>
+            <c:forEach items="${empresas}" var="empresa">
+                <li>${empresa.nome}</li>
+            </c:forEach>
+        </ul>
+
+    </body>
 </html>
