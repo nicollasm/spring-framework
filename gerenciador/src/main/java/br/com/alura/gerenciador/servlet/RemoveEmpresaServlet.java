@@ -9,11 +9,18 @@ import java.io.IOException;
 
 @WebServlet(name = "removeEmpresa", value = "/removeEmpresa")
 public class RemoveEmpresaServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String paramId = request.getParameter("id");
-        Integer id = Integer.valueOf(paramId);
+	private static final long serialVersionUID = 1L;
 
-        System.out.println(id);
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String paramId = request.getParameter("id");
+		Integer id = Integer.valueOf(paramId);
+
+		System.out.println("Empresa ID: " + id + " removida.");
+
+		Banco banco = new Banco();
+		banco.removeEmpresa(id);
+		
+		response.sendRedirect("listaEmpresas");
+
+	}
 }
