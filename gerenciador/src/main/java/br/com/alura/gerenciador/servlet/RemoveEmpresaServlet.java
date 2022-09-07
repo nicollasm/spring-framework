@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "removeEmpresa", value = "/removeEmpresa")
+@WebServlet(urlPatterns = { "/removeEmpresa" })
 public class RemoveEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String paramId = request.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 
@@ -19,7 +20,7 @@ public class RemoveEmpresaServlet extends HttpServlet {
 
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);
-		
+
 		response.sendRedirect("listaEmpresas");
 
 	}

@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet(urlPatterns = "/oi")
 public class OiMundoServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
+	public OiMundoServlet() {
+		System.out.println("Criando Oi Mundo Servlet");
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -26,7 +27,7 @@ public class OiMundoServlet extends HttpServlet {
 		out.println("Primeiro servlet.");
 		out.println("</body>");
 		out.println("</html>");
-		
+
 		System.out.println("Servlet OiMundoServlet foi executado");
 	}
 

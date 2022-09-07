@@ -13,41 +13,42 @@ import java.util.Date;
 /**
  * Servlet implementation class NovaEmpresaServlet
  */
-@WebServlet("/novaEmpresa")
+@WebServlet(urlPatterns = { "/novaEmpresa" })
 public class NovaEmpresaServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Cadastrando nova empresa");
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("Cadastrando nova empresa");
 
-        String nomeEmpresa = request.getParameter("nome");
-        String paramDataEmpresa = request.getParameter("data");
+		String nomeEmpresa = request.getParameter("nome");
+		String paramDataEmpresa = request.getParameter("data");
 
-        Date dataAbertura;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            dataAbertura = sdf.parse(paramDataEmpresa);
-        } catch (ParseException e) {
-            throw new ServletException(e);
-        }
+		Date dataAbertura;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			dataAbertura = sdf.parse(paramDataEmpresa);
+		} catch (ParseException e) {
+			throw new ServletException(e);
+		}
 
-        Empresa empresa = new Empresa();
-        empresa.setNome(nomeEmpresa);
-        empresa.setDataAbertura(dataAbertura);
+		Empresa empresa = new Empresa();
+		empresa.setNome(nomeEmpresa);
+		empresa.setDataAbertura(dataAbertura);
 
-        Banco banco = new Banco();
-        banco.adiciona(empresa);
+		Banco banco = new Banco();
+		banco.adiciona(empresa);
 
-        request.setAttribute("empresa", empresa.getNome());
+		request.setAttribute("empresa", empresa.getNome());
 
-        //redirecionando pelo navegador(client side)
-        response.sendRedirect("listaEmpresas");
+		// redirecionando pelo navegador(client side)
+		response.sendRedirect("listaEmpresas");
 
-        //chamando o .JSP
+		// chamando o .JSP
 //        RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
 //        request.setAttribute("empresa", empresa.getNome());
 //        rd.forward(request, response);
 
-    }
+	}
 
 }
