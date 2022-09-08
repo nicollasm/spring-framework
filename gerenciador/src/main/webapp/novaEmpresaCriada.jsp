@@ -7,7 +7,7 @@
         </c:if>
 
         <c:if test="${empty empresa}">
-            Nenhuma empresa cadastrada!
+            Nenhuma empresa cadastrada !
         </c:if>
     </body>
 </html>
