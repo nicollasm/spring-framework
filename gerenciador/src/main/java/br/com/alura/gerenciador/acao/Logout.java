@@ -7,14 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginForm implements Acao {
+public class Logout implements Acao {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		return "forward:formLogin.jsp";
-
+		HttpSession sessao = request.getSession();
+		
+//		sessao.removeAttribute("usuarioLogado"); // remove o atributo mas objeto continua na memória
+		sessao.invalidate(); // remove o objeto httpsession e todos os objetos associados a ele; destroi o cookie.
+		return "redirect:entrada?acao=LoginForm";
 	}
 
 }
