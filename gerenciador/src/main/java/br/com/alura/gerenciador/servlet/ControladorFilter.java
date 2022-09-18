@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -22,9 +23,14 @@ import br.com.alura.gerenciador.acao.Acao;
 //@WebFilter("/entrada")
 public class ControladorFilter extends HttpFilter implements Filter {
 
-	/**
-	 * 
-	 */
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+	}
+
+	@Override
+	public void destroy() {
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
