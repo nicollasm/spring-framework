@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serial;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +24,7 @@ import br.com.alura.jdbc.modelo.Produto;
 
 public class ProdutoCategoriaFrame extends JFrame {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private JLabel labelNome, labelDescricao, labelCategoria;
@@ -150,8 +153,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 
 	private void alterar() {
 		Object objetoDaLinha = (Object) modelo.getValueAt(tabela.getSelectedRow(), tabela.getSelectedColumn());
-		if (objetoDaLinha instanceof Integer) {
-			Integer id = (Integer) objetoDaLinha;
+		if (objetoDaLinha instanceof Integer id) {
 			String nome = (String) modelo.getValueAt(tabela.getSelectedRow(), 1);
 			String descricao = (String) modelo.getValueAt(tabela.getSelectedRow(), 2);
 			this.produtoController.alterar(nome, descricao, id);
@@ -191,7 +193,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		if (!textoNome.getText().equals("") && !textoDescricao.getText().equals("")) {
 			Produto produto = new Produto(textoNome.getText(), textoDescricao.getText());
 			Categoria categoria = (Categoria) comboCategoria.getSelectedItem();
-			produto.setCategoriaId(categoria.getId());
+			produto.setCategoriaId(Objects.requireNonNull(categoria).getId());
 			this.produtoController.salvar(produto);
 			JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
 			this.limpar();
